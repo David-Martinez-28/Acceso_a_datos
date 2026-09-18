@@ -1,0 +1,101 @@
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision d7d0551bad9d62e3a6c74aea3f3a07bb8e828956)
++++ b/.idea/vcs.xml	(date 1789722524558)
+@@ -1,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+--- a/.idea/.gitignore	(revision d7d0551bad9d62e3a6c74aea3f3a07bb8e828956)
++++ b/.idea/.gitignore	(date 1789388059232)
+@@ -1,0 +1,10 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Ignored default folder with query files
++/queries/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+--- a/.idea/encodings.xml	(revision d7d0551bad9d62e3a6c74aea3f3a07bb8e828956)
++++ b/.idea/encodings.xml	(date 1789388072800)
+@@ -1,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
++    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision d7d0551bad9d62e3a6c74aea3f3a07bb8e828956)
++++ b/.idea/misc.xml	(date 1789388054006)
+@@ -1,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="MavenProjectsManager">
++    <option name="originalFiles">
++      <list>
++        <option value="$PROJECT_DIR$/pom.xml" />
++      </list>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-26" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/git_toolbox_prj.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/git_toolbox_prj.xml b/.idea/git_toolbox_prj.xml
+--- a/.idea/git_toolbox_prj.xml	(revision d7d0551bad9d62e3a6c74aea3f3a07bb8e828956)
++++ b/.idea/git_toolbox_prj.xml	(date 1789722591933)
+@@ -1,0 +1,15 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GitToolBoxProjectSettings">
++    <option name="commitMessageIssueKeyValidationOverride">
++      <BoolValueOverride>
++        <option name="enabled" value="true" />
++      </BoolValueOverride>
++    </option>
++    <option name="commitMessageValidationEnabledOverride">
++      <BoolValueOverride>
++        <option name="enabled" value="true" />
++      </BoolValueOverride>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
