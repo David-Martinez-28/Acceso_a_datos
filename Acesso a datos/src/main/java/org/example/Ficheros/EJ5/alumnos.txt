@@ -1,0 +1,4 @@
+1;Ana Garcia;20;8.5
+2;Luis Perez;22;7.2
+3;Marta Lopez;19;9.1
+4;Carlos Ruiz;22;6.8
