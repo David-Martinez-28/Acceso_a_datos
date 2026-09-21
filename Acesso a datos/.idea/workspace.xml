@@ -34,7 +34,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/david-martinez28/Acceso_a_datos.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/David-Martinez-28/Acceso_a_datos.git&quot;,
     &quot;accountId&quot;: &quot;df3e7d2a-325b-43d0-bccd-ef753e506355&quot;
   }
 }</component>
@@ -57,19 +57,22 @@
     "Application.EJ5.executor": "Run",
     "Application.EJ6.executor": "Run",
     "Application.EJ7.executor": "Run",
+    "Application.LeerXML.executor": "Run",
+    "Application.PruebaXML.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/ciclosm/IdeaProjects",
     "node.js.detected.package.jshint": "true",
     "node.js.selected.package.jshint": "",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/home/ciclosm/IdeaProjects/Acesso a datos/src/main/java/org/example/Main.java",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "preferences.sourceCode"
   },
   "keyToStringList": {
     "GitStage.ChangesTree.GroupingKeys": [
