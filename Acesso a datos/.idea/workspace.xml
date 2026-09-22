@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa2a76f-a1db-4b43-89c0-766e82495370" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +53,9 @@
     "Application.EJ5.executor": "Run",
     "Application.EJ6.executor": "Run",
     "Application.EJ7.executor": "Run",
+    "Application.EJ8.executor": "Run",
+    "Application.Ej10.executor": "Run",
+    "Application.Ej9.executor": "Run",
     "Application.LeerXML.executor": "Run",
     "Application.PruebaXML.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -87,6 +86,12 @@
       <recent name="$PROJECT_DIR$/src/main/java/org/example/Ficheros/EJ7" />
       <recent name="$PROJECT_DIR$/src/main/java/org/example/Ficheros/EJ6" />
       <recent name="$PROJECT_DIR$/src/main/java/org/example/Ficheros/EJ5" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/org/example/XML" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.XML" />
     </key>
   </component>
   <component name="RunManager">
@@ -141,6 +146,15 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Ficheros/EJ1/EJ1.java</url>
           <line>10</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/XML/EJ10/Ej10.java</url>
+          <line>50</line>
+          <properties class="org.example.XML.EJ10.Ej10" method="formatearAlumnos">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
