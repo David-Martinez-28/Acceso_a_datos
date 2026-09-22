@@ -12,6 +12,7 @@ public class Alumno {
         this.nombre = nombre;
         this.edad = edad;
         this.nota = nota;
+
     }
 
     public int getId() {

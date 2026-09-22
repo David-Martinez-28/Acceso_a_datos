@@ -34,6 +34,13 @@
     &quot;accountId&quot;: &quot;df3e7d2a-325b-43d0-bccd-ef753e506355&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-26.0.2.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3,
   &quot;fromUser&quot;: false
@@ -59,6 +66,7 @@
     "Application.LeerXML.executor": "Run",
     "Application.PruebaXML.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
@@ -71,7 +79,7 @@
     "node.js.selected.package.jshint": "",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/home/ciclosm/IdeaProjects/Acesso a datos/src/main/java/org/example/Main.java",
-    "settings.editor.selected.configurable": "preferences.sourceCode"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
     "GitStage.ChangesTree.GroupingKeys": [
