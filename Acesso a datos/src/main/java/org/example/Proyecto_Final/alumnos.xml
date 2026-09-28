@@ -3,18 +3,21 @@
   <alumno>
     <id>1</id>
     <nombre>Ana</nombre>
+    <apellidos>Martinez</apellidos>
     <edad>20</edad>
     <nota>8.5</nota>
   </alumno>
   <alumno>
     <id>2</id>
     <nombre>Pedro</nombre>
+    <apellidos> Gonzalez</apellidos>
     <edad>21</edad>
     <nota>6.5</nota>
   </alumno>
   <alumno>
     <id>3</id>
     <nombre>Luis</nombre>
+    <apellidos>Deltell</apellidos>
     <edad>22</edad>
     <nota>7.2</nota>
   </alumno>

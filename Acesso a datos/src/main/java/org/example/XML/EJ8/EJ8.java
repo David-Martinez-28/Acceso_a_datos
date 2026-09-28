@@ -14,9 +14,9 @@ public class EJ8 {
     public static void main(String[] args) {
 
         try {
-
+            //Ruta del archivo
             File archivo = new File("/home/ciclosm/IdeaProjects/Acesso a datos/src/main/java/org/example/XML/alumnos.xml");
-
+            //
             DocumentBuilderFactory factory =
                     DocumentBuilderFactory.newInstance();
 
@@ -25,15 +25,17 @@ public class EJ8 {
 
             Document documento =
                     builder.parse(archivo);
+            //Creacion de la lista de DOM
             NodeList alumnos =
                     documento.getElementsByTagName("alumno");
-
+            //Bucle para intenerar datos de la lista de nodo
             for (int i = 0; i < alumnos.getLength(); i++) {
 
                 Node alumno = alumnos.item(i);
-
+                //Casteamos el alumno del tipo Node a Element para poder recoger los datos
                 Element alumno1= (Element) alumno;
 
+                //Variables sacadas de XML
                 String id =
                         alumno1.getElementsByTagName("id")
                                 .item(0)
@@ -53,6 +55,8 @@ public class EJ8 {
                         alumno1.getElementsByTagName("nota")
                                 .item(0)
                                 .getTextContent();
+
+                System.out.println(id+" "+nombre+" "+edad+" "+nota);
 
             }
         } catch (Exception e) {

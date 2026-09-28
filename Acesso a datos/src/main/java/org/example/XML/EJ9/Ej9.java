@@ -14,30 +14,34 @@ import java.util.ArrayList;
 public class Ej9 {
     static void main(String[] args) {
         ArrayList<Alumno> alumnosList=new ArrayList<>();
-        alumnosList=formatearAlumnos(alumnosList);
+        //List donde estan almacenado los Alumnos que devuelve la funcion formatearAlumnos
+        formatearAlumnos(alumnosList);
         for(Object alumno :  alumnosList){
            System.out.println(alumno);
         }
 
     }
-
-    private static ArrayList<Alumno> formatearAlumnos( ArrayList alumnosList){
+    //Funcion que lee el XML y los tranforma el contenido a una clase  Alumno
+    private static void formatearAlumnos( ArrayList<Alumno> alumnosList){
 
 
         try {
-
+            //Ruta de larchivo a leer
             File archivo = new File("/home/ciclosm/IdeaProjects/Acesso a datos/src/main/java/org/example/XML/alumnos.xml");
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-
             Document documento = builder.parse(archivo);
+
+            //Recogemos los nodos alumno del documento XML
             NodeList alumnos = documento.getElementsByTagName("alumno");
 
             for (int i = 0; i < alumnos.getLength(); i++) {
 
+                //Castemos el Node de alumno a un elemento Element
                 Element alumno1= (Element) alumnos.item(i);
 
+                //Datos del XML
                 String idStr =
                         alumno1.getElementsByTagName("id")
                                 .item(0)
@@ -58,6 +62,8 @@ public class Ej9 {
                                 .item(0)
                                 .getTextContent();
 
+
+                //Parseo de datos de String a INT/Double
                 int id=Integer.parseInt(idStr);
                 int edad=Integer.parseInt(edadStr);
                 double nota=Double.parseDouble(notaStr);
@@ -67,6 +73,6 @@ public class Ej9 {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return    alumnosList;
+
     }
 }

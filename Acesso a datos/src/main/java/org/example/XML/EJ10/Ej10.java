@@ -5,7 +5,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -15,9 +14,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
-
-import org.example.XML.Alumno;
-
 
 
 public class Ej10 {
@@ -31,7 +27,7 @@ public class Ej10 {
 
         //Funcion que le pasamos el arrayList que queremos que se pasen los datos
 
-        alumnosList=formatearAlumnos(alumnosList);
+        formatearAlumnos(alumnosList);
 
         //Se pasa el arrayList de la clase Alumno para que escriba el XML
 
@@ -39,32 +35,33 @@ public class Ej10 {
 
         //Se pasa otro Array list para ver como recupera los datos del XML
 
-        alumnosList1=formatearAlumnos(alumnosList1);
+        formatearAlumnos(alumnosList1);
 
         for(Alumno alumno : alumnosList1){
             System.out.println(alumno);
         }
 
     }
-    //Funcion que lee el Xml y lo coloca en la funcion pasada por parametro
 
-    private static ArrayList formatearAlumnos(ArrayList<Alumno> alumnosList){
+    /// Funcion que lee el XML y los tranforma el contenido a una clase  Alumno
+    private static void formatearAlumnos(ArrayList<Alumno> alumnosList){
 
 
         try {
-
+            //Ruta de larchivo a leer
             File archivo = new File("/home/ciclosm/IdeaProjects/Acesso a datos/src/main/java/org/example/XML/alumnos.xml");
 
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document documento = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(archivo);
 
-            Document documento = builder.parse(archivo);
+            //Recogemos los nodos alumno del documento XML
             NodeList alumnos = documento.getElementsByTagName("alumno");
 
             for (int i = 0; i < alumnos.getLength(); i++) {
 
+                //Castemos el Node de alumno a un elemento Element
                 Element alumno1= (Element) alumnos.item(i);
 
+                //Datos del XML
                 String idStr =
                         alumno1.getElementsByTagName("id")
                                 .item(0)
@@ -85,6 +82,8 @@ public class Ej10 {
                                 .item(0)
                                 .getTextContent();
 
+
+                //Parseo de datos de String a INT/Double
                 int id=Integer.parseInt(idStr);
                 int edad=Integer.parseInt(edadStr);
                 double nota=Double.parseDouble(notaStr);
@@ -94,7 +93,6 @@ public class Ej10 {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return    alumnosList;
     }
 
     //Funcion qeu se le pasa el arrayList para que escriba el archivo XML
@@ -137,16 +135,12 @@ public class Ej10 {
 
             }
 
-            StreamResult result = new StreamResult(new File("/home/ciclosm/IdeaProjects/Acesso a datos/src/main/java/org/example/XML/alumnos.xml"));
-
-
             //Dar formato de XML
 
             Transformer t = TransformerFactory.newInstance().newTransformer();
 
             t.setParameter(OutputKeys.INDENT, "yes");
-            ByteArrayOutputStream s;
-            s = new ByteArrayOutputStream();
+            ByteArrayOutputStream s = new ByteArrayOutputStream();
 
             t.setOutputProperty(OutputKeys.INDENT, "yes");
             t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
