@@ -11,10 +11,9 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
+
 import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
@@ -116,6 +115,7 @@ public class main {
         }else {
             for(Alumno alumno: alumnos){
                 System.out.println("====================");
+                System.out.println("ID:"+alumno.getId());
                 System.out.println("Nombre:"+alumno.getNombre());
                 System.out.println("Apellidos:"+alumno.getApellidos());
                 System.out.println("Edad:"+alumno.getEdad());
@@ -126,7 +126,7 @@ public class main {
 
     }
     public static void buscarAlumno(ArrayList<Alumno> alumnos){
-        Scanner sc = new Scanner(System.in);
+
         System.out.println("Introduce alumno");
         int alumno=pedirNumero();
         for(Alumno alumno1:alumnos){
@@ -137,27 +137,43 @@ public class main {
             }
         }
     }
-    public static void eliminarAlumno(ArrayList<Alumno> alumnos){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce alumno");
-        int alumno= pedirNumero();
-        boolean eliminar=false;
-        for(Alumno alumno1:alumnos){
-            if (alumno1.getNombre().equals(alumno)){
-                System.out.println(alumno);
-                System.out.println(alumno1.getNombre());
-                eliminar=true;
-            }else {
-                eliminar=false;
-            }
+    public static void eliminarAlumno(ArrayList<Alumno> alumnos) {
+            boolean valido=false;
+            String opcion;
+
+        boolean eliminado=false;
+            do {
+                System.out.println("Quieres eliminar por nombre o por id(Escribe id o nombre):");
+                opcion=pedirNombre();
+                if(opcion.equals("id")||opcion.equals("nombre")){
+                    valido=true;
+                }else{
+                    System.out.println("La opcion no ha sido id o nombre");
+                }
+            }while(!valido);
+        //El removeIF utiliza una funcion lambda para eliminar lo que la condicion despues de la -> indique en este caso eliminamos en que tenga la id igual y devuelve un tipo boleano
+
+        if(opcion.equals("id")){
+            System.out.println("Introduce la id:");
+            int id=pedirNumero();
+                eliminado = alumnos.removeIf(alumno1 -> alumno1.getId() == id);
+        }else if(opcion.equals("nombre")){
+            System.out.println("Introduce la nombre:");
+            String nombre=pedirNombre();
+            eliminado= alumnos.removeIf(alumno1 -> alumno1.getNombre().equals(nombre));
+
         }
-        if(eliminar){
-            alumnos.remove(alumno);
-        }else{
+
+
+        if (eliminado) {
+            System.out.println("Alumno eliminado correctamente.");
+        } else {
             System.out.println("Alumno no existe");
         }
+
         exportarXML(alumnos);
     }
+
 
 
     public static void importarXML( ArrayList<Alumno> alumnosList) {
@@ -272,6 +288,7 @@ public class main {
             e.printStackTrace();
         }
     }
+    //Comprueba que sea un numero
     public static boolean esNumero(String cadena) {
         try {
             Integer.parseInt(cadena);
@@ -280,7 +297,7 @@ public class main {
             return false;
         }
     }
-
+    //Funcion para pedir numerosEnteros
     public static int pedirNumero() {
         Scanner sc = new Scanner(System.in);
         boolean esNumero;
@@ -298,6 +315,7 @@ public class main {
 
         return Integer.parseInt(numero);
     }
+    //Para comprobar sies un numero doble
     public static boolean esNumeroDecimal(String cadena) {
         try {
             Double.parseDouble(cadena.replace(',', '.'));
@@ -306,7 +324,7 @@ public class main {
             return false;
         }
     }
-
+    //Para pedir un numero Double
     public static double pedirNumeroDecimal() {
         Scanner sc = new Scanner(System.in);
         boolean esNumero;
@@ -328,7 +346,7 @@ public class main {
 
 
 
-
+    //Para validar los datos si es un texto
     public static boolean esNombreValido(String cadena) {
             if (cadena == null) {
                 return false;
@@ -336,7 +354,7 @@ public class main {
             String textoLimpio = cadena.trim();
             return !textoLimpio.isEmpty() && textoLimpio.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$");
     }
-
+    //Para pedir un nombre
     public static String pedirNombre() {
             Scanner sc = new Scanner(System.in);
             boolean esValido;
@@ -353,6 +371,7 @@ public class main {
 
             return nombre.trim();
     }
+    //Recore el array para encontrar cual es la ultima id puesta para utilizarla cuando crees un Alumno
     public static int recogerId(ArrayList<Alumno> alumnos) {
         int ultimaId=0;
         for (Alumno alumnoItem : alumnos) {
@@ -397,7 +416,7 @@ public class main {
                 Element nota = documento.createElement("nota");
                 nota.setTextContent(String.valueOf(alumnoItem.getNota()));
                 alumno.appendChild(nota);
-
+                //Apellido
                 Element apellidos = documento.createElement("apellidos");
                 apellidos.setTextContent(String.valueOf(alumnoItem.getApellidos()));
                 alumno.appendChild(apellidos);

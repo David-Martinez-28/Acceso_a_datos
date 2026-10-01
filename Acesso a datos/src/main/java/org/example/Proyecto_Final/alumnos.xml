@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <alumnos>
   <alumno>
-    <id>1</id>
-    <nombre>Ana</nombre>
-    <edad>20</edad>
-    <nota>8.5</nota>
-    <apellidos>Deltell</apellidos>
-  </alumno>
-  <alumno>
-    <id>2</id>
-    <nombre>Pedro</nombre>
-    <edad>21</edad>
-    <nota>6.5</nota>
-    <apellidos>Benalcazar</apellidos>
-  </alumno>
-  <alumno>
     <id>3</id>
     <nombre>Luis</nombre>
     <edad>22</edad>
