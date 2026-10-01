@@ -17,52 +17,53 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class main {
-    static void main(String[] args) {
+    public static void main(String[] args) {
+        boolean salir = false;
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+        importarXML(alumnos);
+        Scanner sc = new Scanner(System.in);
+        int opcion;
         do {
-            ArrayList<Alumno> alumnos = new ArrayList<>();
-            importarXML(alumnos);
-            Scanner sc = new Scanner(System.in);
-            boolean esNUmero = true;
-            int opcion = 0;
+
             mostrarMenu();
             do {
-                System.out.println("Escribe la opcion:");
-                try {
-                    opcion = sc.nextInt();
-                    esNUmero = false;
-                }catch (InputMismatchException e){
-
+                System.out.println("Introduce la opcion:");
+                opcion = pedirNumero();
+                if (opcion > 8 || opcion<=0) {
+                    System.out.println("Se ha introducido un numero no valido(1 al 8)");
                 }
+            }while (opcion<=0 || opcion>8);
 
-            }while (esNUmero);
 
             switch (opcion) {
                 case 1:
-
+                    anadirAlumno(alumnos);
                     break;
                 case 2:
-                mostrarAlumnos(alumnos);
+                    mostrarAlumnos(alumnos);
                 break;
                 case 3:
-                buscarAlumno(alumnos);
+                    buscarAlumno(alumnos);
                 break;
                 case 4:
                     eliminarAlumno(alumnos);
                     break;
-                    case 5:exportarXML(alumnos);
+                case 5:
+                    exportarXML(alumnos);
                     break;
-                    case 6:
-                        importarXML(alumnos);
-                        break;
-                        case 7:
-
-                            break;
-                            case 8:
-
-                                                break;
+                case 6:
+                    importarXML(alumnos);
+                    break;
+                case 7:
+                    copiaDeSeguridad(alumnos);
+                    break;
+                case 8:
+                    salir = true;
+                    System.out.println("Salir");
+                    break;
             }
 
-        }while (true);
+        }while (!salir);
     }
     public static void mostrarMenu(){
         System.out.println("GESTOR DE ALUMNOS");
@@ -77,12 +78,49 @@ public class main {
         System.out.println("8. Salir");
 
     }
+
+    public static void anadirAlumno(ArrayList<Alumno> alumnos){
+        if(alumnos.isEmpty()){
+            System.out.println("No hay alumnos registrados");
+        }else{
+            int edad;
+            double nota;
+            int id=recogerId(alumnos);
+            System.out.println("Introduce el nombre");
+            String nombre=pedirNombre();
+            System.out.println("Introduce el apellido");
+            String apellido=pedirNombre();
+            do {
+                System.out.println("Introduce la edad");
+                edad=pedirNumero();
+                if(edad<0){
+                    System.out.println("Se ha introducido un edad negativo");
+                }
+            }while(edad<0);
+            do{
+                System.out.println("introduce la nota");
+                nota=pedirNumeroDecimal();
+                if(nota<0 || nota>10){
+                    System.out.println("No se ha introducido una nota entre 0 a 10");
+                }
+            }while(nota < 0 || nota > 10);
+            Alumno alumnoNuevo=new Alumno(id,nombre,apellido,edad,nota);
+
+            alumnos.add(alumnoNuevo);
+            exportarXML(alumnos);
+        }
+    }
     public static void mostrarAlumnos(ArrayList<Alumno> alumnos){
         if (alumnos.isEmpty()){
             System.out.println("No alumnos encontrados");
         }else {
             for(Alumno alumno: alumnos){
-                System.out.println(alumno);
+                System.out.println("====================");
+                System.out.println("Nombre:"+alumno.getNombre());
+                System.out.println("Apellidos:"+alumno.getApellidos());
+                System.out.println("Edad:"+alumno.getEdad());
+                System.out.println("Nota"+alumno.getNota());
+
             }
         }
 
@@ -90,7 +128,7 @@ public class main {
     public static void buscarAlumno(ArrayList<Alumno> alumnos){
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce alumno");
-        int alumno=sc.nextInt();
+        int alumno=pedirNumero();
         for(Alumno alumno1:alumnos){
             if(alumno1.getId()==alumno){
                 System.out.println(alumno1);
@@ -102,7 +140,7 @@ public class main {
     public static void eliminarAlumno(ArrayList<Alumno> alumnos){
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce alumno");
-        String alumno=sc.nextLine();
+        int alumno= pedirNumero();
         boolean eliminar=false;
         for(Alumno alumno1:alumnos){
             if (alumno1.getNombre().equals(alumno)){
@@ -182,57 +220,203 @@ public class main {
     private static void exportarXML(ArrayList<Alumno> alumnosList) {
 
         try {
-
             Document documento = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 
             // Elemento raíz
             Element raiz = documento.createElement("alumnos");
             documento.appendChild(raiz);
 
-            for (Alumno alumnos : alumnosList) {
+            for (Alumno alumnoItem : alumnosList) { // Nombre de variable en singular para mayor claridad
 
-                // Alumno
+                // Elemento alumno
                 Element alumno = documento.createElement("alumno");
                 raiz.appendChild(alumno);
 
                 // id
                 Element id = documento.createElement("id");
-                id.setTextContent(String.valueOf(alumnos.getId()));
+                id.setTextContent(String.valueOf(alumnoItem.getId()));
                 alumno.appendChild(id);
 
                 // Nombre
                 Element nombre = documento.createElement("nombre");
-                nombre.setTextContent(alumnos.getNombre());
+                nombre.setTextContent(alumnoItem.getNombre());
                 alumno.appendChild(nombre);
 
                 // Edad
                 Element edad = documento.createElement("edad");
-                edad.setTextContent(String.valueOf(alumnos.getEdad()));
+                edad.setTextContent(String.valueOf(alumnoItem.getEdad()));
                 alumno.appendChild(edad);
 
                 // Nota
                 Element nota = documento.createElement("nota");
-                nota.setTextContent(String.valueOf(alumnos.getNota()));
+                nota.setTextContent(String.valueOf(alumnoItem.getNota()));
                 alumno.appendChild(nota);
 
+                Element apellidos = documento.createElement("apellidos");
+                apellidos.setTextContent(String.valueOf(alumnoItem.getApellidos()));
+                alumno.appendChild(apellidos);
             }
 
-            //Dar formato de XML
-
+            // Configuración del Transformer
             Transformer t = TransformerFactory.newInstance().newTransformer();
-
-            t.setParameter(OutputKeys.INDENT, "yes");
-            ByteArrayOutputStream s = new ByteArrayOutputStream();
-
             t.setOutputProperty(OutputKeys.INDENT, "yes");
             t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
-            t.transform(new DOMSource(documento),new StreamResult(s));
+            // Guardar directamente en archivo físico
+            File archivoSalida = new File("/home/ciclosm/IdeaProjects/Acesso a datos/src/main/java/org/example/Proyecto_Final/alumnos.xml");
+            t.transform(new DOMSource(documento), new StreamResult(archivoSalida));
+
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+    public static boolean esNumero(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static int pedirNumero() {
+        Scanner sc = new Scanner(System.in);
+        boolean esNumero;
+        String numero;
+
+        do {
+
+            numero = sc.nextLine();
+            esNumero = esNumero(numero);
+
+            if (!esNumero) {
+                System.out.println("Entrada no válida. Por favor, introduce un número entero.");
+            }
+        } while (!esNumero);
+
+        return Integer.parseInt(numero);
+    }
+    public static boolean esNumeroDecimal(String cadena) {
+        try {
+            Double.parseDouble(cadena.replace(',', '.'));
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static double pedirNumeroDecimal() {
+        Scanner sc = new Scanner(System.in);
+        boolean esNumero;
+        String numero;
+
+        do {
+
+            numero = sc.nextLine();
+            esNumero = esNumeroDecimal(numero);
+
+            if (!esNumero) {
+                System.out.println("Entrada no válida. Por favor, introduce un número decimal correcto.");
+            }
+        } while (!esNumero);
+
+        // Convertimos la coma a punto antes de parsear a double
+        return Double.parseDouble(numero.replace(',', '.'));
+    }
+
+
+
+
+    public static boolean esNombreValido(String cadena) {
+            if (cadena == null) {
+                return false;
+            }
+            String textoLimpio = cadena.trim();
+            return !textoLimpio.isEmpty() && textoLimpio.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$");
+    }
+
+    public static String pedirNombre() {
+            Scanner sc = new Scanner(System.in);
+            boolean esValido;
+            String nombre;
+            do {
+
+                nombre = sc.nextLine();
+                esValido = esNombreValido(nombre);
+
+                if (!esValido) {
+                    System.out.println("Entrada no válida. El nombre solo debe contener letras y no puede estar vacío.");
+                }
+            } while (!esValido);
+
+            return nombre.trim();
+    }
+    public static int recogerId(ArrayList<Alumno> alumnos) {
+        int ultimaId=0;
+        for (Alumno alumnoItem : alumnos) {
+            if (alumnoItem.getId() > ultimaId) {
+                ultimaId = alumnoItem.getId();
+
+            }
+        }
+        return ultimaId+1;
+    }
+    public static void copiaDeSeguridad(ArrayList<Alumno> alumnosList) {
+
+        try {
+            Document documento = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+
+            // Elemento raíz
+            Element raiz = documento.createElement("alumnos");
+            documento.appendChild(raiz);
+
+            for (Alumno alumnoItem : alumnosList) { // Nombre de variable en singular para mayor claridad
+
+                // Elemento alumno
+                Element alumno = documento.createElement("alumno");
+                raiz.appendChild(alumno);
+
+                // id
+                Element id = documento.createElement("id");
+                id.setTextContent(String.valueOf(alumnoItem.getId()));
+                alumno.appendChild(id);
+
+                // Nombre
+                Element nombre = documento.createElement("nombre");
+                nombre.setTextContent(alumnoItem.getNombre());
+                alumno.appendChild(nombre);
+
+                // Edad
+                Element edad = documento.createElement("edad");
+                edad.setTextContent(String.valueOf(alumnoItem.getEdad()));
+                alumno.appendChild(edad);
+
+                // Nota
+                Element nota = documento.createElement("nota");
+                nota.setTextContent(String.valueOf(alumnoItem.getNota()));
+                alumno.appendChild(nota);
+
+                Element apellidos = documento.createElement("apellidos");
+                apellidos.setTextContent(String.valueOf(alumnoItem.getApellidos()));
+                alumno.appendChild(apellidos);
+            }
+
+            // Configuración del Transformer
+            Transformer t = TransformerFactory.newInstance().newTransformer();
+            t.setOutputProperty(OutputKeys.INDENT, "yes");
+            t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
+            // Guardar directamente en archivo físico
+            File archivoSalida = new File("/home/ciclosm/IdeaProjects/Acesso a datos/src/main/java/org/example/Proyecto_Final/CopiaDeSeguridadAlumnosalumnos.xml");
+            t.transform(new DOMSource(documento), new StreamResult(archivoSalida));
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
